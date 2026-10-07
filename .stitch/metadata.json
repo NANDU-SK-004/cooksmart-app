@@ -1,0 +1,59 @@
+{
+  "name": "projects/8288663649002588035",
+  "projectId": "8288663649002588035",
+  "title": "CookSmart",
+  "visibility": "PRIVATE",
+  "createTime": "2026-10-06T15:44:21.035142Z",
+  "updateTime": "2026-10-06T15:49:57.874029Z",
+  "projectType": "PROJECT_DESIGN",
+  "origin": "STITCH",
+  "deviceType": "MOBILE",
+  "designSystemId": "assets/b210df05284b4ef683a708015c490f0d",
+  "designTheme": {
+    "colorMode": "DARK",
+    "font": "EPILOGUE",
+    "roundness": "ROUND_FULL",
+    "customColor": "#ff6b35"
+  },
+  "screens": {
+    "index": {
+      "id": "3d9aae9b1fbe45048cc7c4dc174472ad",
+      "sourceScreen": "projects/8288663649002588035/screens/3d9aae9b1fbe45048cc7c4dc174472ad",
+      "x": 1024,
+      "y": 0,
+      "width": 390,
+      "height": 1379,
+      "title": "CookSmart - Home Screen"
+    },
+    "ingredients": {
+      "id": "71ebb9a0da794ff9a5d75954f2e04497",
+      "sourceScreen": "projects/8288663649002588035/screens/71ebb9a0da794ff9a5d75954f2e04497",
+      "x": 1474,
+      "y": 0,
+      "width": 390,
+      "height": 1357,
+      "title": "CookSmart - Ingredient Input"
+    },
+    "recipe": {
+      "id": "89f0a186fa494092a2b956d1e827b971",
+      "sourceScreen": "projects/8288663649002588035/screens/89f0a186fa494092a2b956d1e827b971",
+      "x": 1924,
+      "y": 0,
+      "width": 390,
+      "height": 2077,
+      "title": "CookSmart - Recipe Result Screen"
+    },
+    "saved": {
+      "id": "752adea670c740d597bbffb82a3fd78a",
+      "sourceScreen": "projects/8288663649002588035/screens/752adea670c740d597bbffb82a3fd78a",
+      "x": 2374,
+      "y": 0,
+      "width": 390,
+      "height": 1176,
+      "title": "CookSmart - Saved Recipes"
+    }
+  },
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CookSmart - Saved Recipes</title>
+<!-- Google Fonts: Epilogue & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom theme -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "outline": "#a98a80",
+            "error": "#ffb4ab",
+            "on-tertiary-fixed": "#001f28",
+            "on-secondary-fixed-variant": "#673d00",
+            "inverse-primary": "#ab3500",
+            "on-primary-fixed": "#390c00",
+            "surface-tint": "#ffb59d",
+            "surface-container-high": "#282a2e",
+            "surface-dim": "#111317",
+            "inverse-surface": "#e2e2e8",
+            "tertiary-fixed": "#b5ebff",
+            "surface-container-highest": "#333539",
+            "surface-bright": "#37393e",
+            "on-secondary": "#482900",
+            "tertiary-fixed-dim": "#59d5fb",
+            "secondary": "#ffb867",
+            "surface": "#111317",
+            "primary-fixed-dim": "#ffb59d",
+            "surface-variant": "#333539",
+            "tertiary-container": "#00a7cb",
+            "on-tertiary-container": "#003744",
+            "on-secondary-fixed": "#2b1700",
+            "on-error-container": "#ffdad6",
+            "inverse-on-surface": "#2f3035",
+            "on-surface-variant": "#e1bfb5",
+            "on-primary-container": "#5f1900",
+            "background": "#111317",
+            "on-tertiary-fixed-variant": "#004e60",
+            "primary": "#ffb59d",
+            "surface-container-lowest": "#0c0e12",
+            "surface-container-low": "#1a1c20",
+            "on-primary": "#5d1900",
+            "on-error": "#690005",
+            "secondary-container": "#d48300",
+            "on-background": "#e2e2e8",
+            "on-primary-fixed-variant": "#832600",
+            "on-tertiary": "#003543",
+            "secondary-fixed-dim": "#ffb867",
+            "secondary-fixed": "#ffddbb",
+            "outline-variant": "#594139",
+            "on-surface": "#e2e2e8",
+            "surface-container": "#1e2024",
+            "tertiary": "#59d5fb",
+            "error-container": "#93000a",
+            "primary-fixed": "#ffdbd0",
+            "on-secondary-container": "#452800",
+            "primary-container": "#ff6b35"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "margin": "1rem",
+            "gutter-desktop": "1.5rem",
+            "space-md": "1rem",
+            "margin-tablet": "1.5rem",
+            "margin-desktop": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "gutter": "1rem",
+            "space-xl": "2rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "display": ["Epilogue"],
+            "label-md": ["Plus Jakarta Sans"],
+            "headline-md": ["Epilogue"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-sm": ["Epilogue"],
+            "display-mobile": ["Epilogue"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-lg": ["Epilogue"]
+          },
+          "fontSize": {
+            "display": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .flame-glow {
+      box-shadow: 0px 8px 24px -4px rgba(255, 107, 53, 0.28);
+    }
+    .flame-glow-sm {
+      box-shadow: 0px 4px 16px -2px rgba(255, 107, 53, 0.22);
+    }
+    .card-shadow {
+      box-shadow: 0px 4px 20px -2px rgba(0, 0, 0, 0.55);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased font-body-md selection:bg-primary-container selection:text-white">
+<!-- Mobile Device Shell Frame (390px Max Width Viewport) -->
+<div class="relative max-w-[420px] mx-auto min-h-screen bg-surface-dim flex flex-col justify-between overflow-x-hidden shadow-2xl">
+<!-- Top Ambient Flare -->
+<div class="absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-48 bg-primary-container/10 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Header Navigation Container -->
+<header class="sticky top-0 z-40 bg-surface/90 backdrop-blur-md px-margin pt-4 pb-3 flex flex-col gap-3">
+<!-- Top Row: Back, Title, & Actions -->
+<div class="flex items-center justify-between">
+<!-- Back Button -->
+<button aria-label="Go Back" class="w-10 h-10 rounded-full bg-surface-container-low border border-surface-variant/40 flex items-center justify-center text-on-surface hover:text-primary-container active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+</button>
+<!-- Screen Title & Pill Cluster -->
+<div class="flex flex-col items-center">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary-container text-[20px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<h1 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Saved Recipes</h1>
+</div>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 mt-0.5 rounded-full bg-surface-container text-secondary text-label-sm font-label-sm border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            6 recipes
+          </span>
+</div>
+<!-- Right Quick Actions (Search & Sort) -->
+<div class="flex items-center gap-1.5">
+<button aria-label="Search saved recipes" class="w-10 h-10 rounded-full bg-surface-container-low border border-surface-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</button>
+<button aria-label="Sort options" class="w-10 h-10 rounded-full bg-surface-container-low border border-surface-variant/40 flex items-center justify-center text-on-surface-variant hover:text-primary-container active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-[20px]" data-icon="swap_vert">swap_vert</span>
+</button>
+</div>
+</div>
+<!-- Quick Filter Category Carousel -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1 pb-1 -mx-margin px-margin">
+<!-- Active Filter -->
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-primary-container text-white font-label-md text-label-md flame-glow-sm flex items-center gap-1.5 transition-all">
+<span>All</span>
+<span class="text-[11px] bg-black/25 px-1.5 py-0.2 rounded-full font-bold">6</span>
+</button>
+<!-- Inactive Filter Items -->
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-variant/30 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+          Quick (&lt;30m)
+        </button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-variant/30 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+          High Protein
+        </button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-variant/30 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+          Italian
+        </button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-variant/30 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+          Favorites
+        </button>
+<button class="flex-shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container border border-surface-variant/30 text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-colors">
+          Vegetarian
+        </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin pb-28 pt-2">
+<!-- Sub-headline Sort Bar info -->
+<div class="flex items-center justify-between mb-3 text-label-sm font-label-sm text-on-surface-variant/80">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary" data-icon="tune">tune</span>
+          Sorted by: <span class="text-on-surface font-medium">Recently Saved</span>
+</span>
+<button class="text-primary-container hover:underline active:scale-95 transition-transform flex items-center gap-0.5">
+          Edit List
+        </button>
+</div>
+<!-- 2-Column Bento Recipe Cards Grid -->
+<div class="grid grid-cols-2 gap-3.5">
+<!-- Card 1: Creamy Tuscan Garlic Chicken -->
+<article class="group relative flex flex-col bg-surface-container-low rounded-[18px] border border-surface-variant/35 overflow-hidden card-shadow hover:border-primary-container/40 transition-all duration-200">
+<!-- Card Image Header -->
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A gourmet, cinematic close-up shot of creamy Tuscan garlic chicken simmering in a rustic cast iron skillet. Rich sun-dried tomatoes, tender spinach, and heavy cream sauce with seared golden chicken breasts in moody warm ambient kitchen lighting. High contrast culinary dark photography with subtle orange heat glow." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDixLv2uHrqVPiCzPNwlNQudUwGFnuXDgsQj27p3-ltR3_k256zb1akOqBwao6SOQFJWDZrN1FdU9wkegf3yG-bUVzrrmL0RqfgH5jf8Jzl6ras4OJmKgaLVCK-u3NKqkN7f8I64SSUNZgtexnvp_QeFIytXll7rwyHd_H9472CUA3cAbfvWI-HnkfIm8rm9FM3wv5S3X35WPDR4BaRoCxVpPFgOuq85L9fCinIvGRJjXpAZ1i4_dL5rF5o5nUKZyT8_VvKM7HIefE"/>
+<!-- Gradient Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/40"></div>
+<!-- Category Tag -->
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-surface-variant/40 text-secondary text-[10px] font-label-sm tracking-wide">
+              Italian
+            </span>
+<!-- Active Bookmark Pill -->
+<button aria-label="Remove Creamy Tuscan Garlic Chicken from saved" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center flame-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[15px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<!-- Card Content -->
+<div class="p-3 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.9 <span class="text-on-surface-variant/60 font-normal">(1.2k)</span>
+</span>
+<span class="text-[10px] text-on-surface-variant/80 font-medium">520 kcal</span>
+</div>
+<h2 class="font-headline-sm text-[14px] leading-tight font-bold text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                Creamy Tuscan Garlic Chicken
+              </h2>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-variant/20 mt-auto">
+<span class="inline-flex items-center gap-1 text-on-surface-variant text-[11px] font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="schedule">schedule</span>
+                25m prep
+              </span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant/70 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Card 2: Spicy Thai Basil Beef -->
+<article class="group relative flex flex-col bg-surface-container-low rounded-[18px] border border-surface-variant/35 overflow-hidden card-shadow hover:border-primary-container/40 transition-all duration-200">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A fiery stir-fry of minced spicy Thai basil beef in a smoking hot wok with fresh bird's eye chilies, crispy holy basil leaves, and fragrant garlic cloves. The dark caramelized savory sauce glistens against dramatic kitchen firelight, captured in sharp culinary macro detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpGAXrNkQc22Ms4TiHFbkpARtZoyyg78zbjJ4zRj5FwJnoLO7PWK3xOp8FOnQq_gFZyOkBoHRV_DCMpZcA_1JGvvwSxKm_fAwuG49N50zMO_R7UYqPTvh6Rx2u4LgqIu2AFJFYxCgbiGg9J9Q8VBoVtlxXo4yPHKZSu1R9RldRL4zoHL4yBG9-Bc9AAaqlnS8UuRT1IxKW2LUHcAlIZugYiQq_3UvFiyCtu1kM5h-K7NllBzd5mY6Z6ZaJJr58JJFfpRo3Dj1dHmI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/40"></div>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-surface-variant/40 text-primary-fixed text-[10px] font-label-sm tracking-wide">
+              Quick &amp; Easy
+            </span>
+<button aria-label="Remove Spicy Thai Basil Beef from saved" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center flame-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[15px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<div class="p-3 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.8 <span class="text-on-surface-variant/60 font-normal">(890)</span>
+</span>
+<span class="text-[10px] text-on-surface-variant/80 font-medium">460 kcal</span>
+</div>
+<h2 class="font-headline-sm text-[14px] leading-tight font-bold text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                Spicy Thai Basil Beef
+              </h2>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-variant/20 mt-auto">
+<span class="inline-flex items-center gap-1 text-on-surface-variant text-[11px] font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="schedule">schedule</span>
+                18m prep
+              </span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant/70 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Card 3: Avocado Citrus Bowl -->
+<article class="group relative flex flex-col bg-surface-container-low rounded-[18px] border border-surface-variant/35 overflow-hidden card-shadow hover:border-primary-container/40 transition-all duration-200">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="An artfully curated vibrant healthy salad bowl featuring sliced creamy ripe avocado, ruby red grapefruit segments, blood orange, toasted pistachios, and peppery wild arugula in a matte black ceramic bowl against a moody dark slate tabletop with soft diffused rim lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz0-DE4RYsOwK_SSkMdkKqcmOWAk7npd9VDPYtsyrRJ1S8rTHZ31Ccm8-WwM3BuWnqoqURTvnwSHl_ue9byuQBvYtWtQeXP9W-nzI4tBT0nm1X9KlsQTi3QpMc5a6dac-A-HaVRpIfdSarpZFDI8paVkQ6QrnTrvobO3oRJMCt73gJOBkPrGnRkn9sV2qxDv2X7nVozPCCjuph8eHsIyvO5Fq_ZLXERnnsM9by1caieJQSORSLlFrl6VFl23VW3YLPoUbT_hEM4Cw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/40"></div>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-surface-variant/40 text-tertiary-fixed text-[10px] font-label-sm tracking-wide">
+              Vegan
+            </span>
+<button aria-label="Remove Avocado Citrus Bowl from saved" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center flame-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[15px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<div class="p-3 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.7 <span class="text-on-surface-variant/60 font-normal">(640)</span>
+</span>
+<span class="text-[10px] text-on-surface-variant/80 font-medium">380 kcal</span>
+</div>
+<h2 class="font-headline-sm text-[14px] leading-tight font-bold text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                Avocado Citrus Bowl
+              </h2>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-variant/20 mt-auto">
+<span class="inline-flex items-center gap-1 text-on-surface-variant text-[11px] font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="schedule">schedule</span>
+                15m prep
+              </span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant/70 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Card 4: Wild Mushroom Risotto -->
+<article class="group relative flex flex-col bg-surface-container-low rounded-[18px] border border-surface-variant/35 overflow-hidden card-shadow hover:border-primary-container/40 transition-all duration-200">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A velvety, rich wild mushroom risotto infused with black truffle essence, pan-seared chanterelles, and aged parmesan shavings. Plated exquisitely in a dark charcoal shallow stoneware bowl with golden flame candlelight illuminating steam rising gracefully." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2ChaTg_HDGWHknO591796EQ-xfHKacE60Nt3IJeWQ2NALFbQnPnlERP_fwX_u9rUIR0VUmEO8NyKaENjawadLN5WY9JlrfMbNNr_smzhLpGazvpe5enWsan-o_TtrfGfZIX79BbL8RFLGyJv_iVbhLLg-xoJ-Sf_RqwyCFHETB1b61WOnarJEyxxgYbs2hMTK0Jiymh20x9DQmQfesL5Itrv-KHZhgXh4_FOEGVakb71FSmqPVMbR4wI7B8aw7Dcs1jx9a4RvIBc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/40"></div>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-surface-variant/40 text-secondary text-[10px] font-label-sm tracking-wide">
+              Gourmet
+            </span>
+<button aria-label="Remove Wild Mushroom Risotto from saved" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center flame-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[15px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<div class="p-3 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.9 <span class="text-on-surface-variant/60 font-normal">(1.4k)</span>
+</span>
+<span class="text-[10px] text-on-surface-variant/80 font-medium">540 kcal</span>
+</div>
+<h2 class="font-headline-sm text-[14px] leading-tight font-bold text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                Wild Mushroom Risotto
+              </h2>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-variant/20 mt-auto">
+<span class="inline-flex items-center gap-1 text-on-surface-variant text-[11px] font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="schedule">schedule</span>
+                35m prep
+              </span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant/70 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Card 5: Crispy Salmon & Asparagus -->
+<article class="group relative flex flex-col bg-surface-container-low rounded-[18px] border border-surface-variant/35 overflow-hidden card-shadow hover:border-primary-container/40 transition-all duration-200">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Pan-seared Atlantic salmon fillet with an ultra-crispy golden crust resting alongside charred tender green asparagus spears, Meyer lemon wheel, and fresh dill. Dark moody culinary presentation under focused warm spotlight with amber oil glaze glistening." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2nLa71UoEWXGnH6CDdUl6bjFiB05b_RjhTWsGBVNH3tUEUIui3DIoS3138qE-MA01pHET2SEFZlRusrC3ewXeYOnNRyIq1yQMwM1ztEkBGENTKOL98XgfdHOrvJX_2kYSKhrDwoUPV4umyBgEsvirP_15bug6WZCKM-8B0m9-zWe0IL1K3XiN27lZ__5lDNN2tbXBYFtNh83dTWtp40mz6bZi0pZDPM7PGZU6EUBpnUMLWopD4TFzZX7BDkqGsm77LPwpZUjuqP0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/40"></div>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-surface-variant/40 text-primary-fixed text-[10px] font-label-sm tracking-wide">
+              High Protein
+            </span>
+<button aria-label="Remove Crispy Salmon from saved" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center flame-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[15px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<div class="p-3 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.9 <span class="text-on-surface-variant/60 font-normal">(980)</span>
+</span>
+<span class="text-[10px] text-on-surface-variant/80 font-medium">490 kcal</span>
+</div>
+<h2 class="font-headline-sm text-[14px] leading-tight font-bold text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                Crispy Salmon &amp; Asparagus
+              </h2>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-variant/20 mt-auto">
+<span class="inline-flex items-center gap-1 text-on-surface-variant text-[11px] font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="schedule">schedule</span>
+                20m prep
+              </span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant/70 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+<!-- Card 6: Garlic Butter Shrimp Pasta -->
+<article class="group relative flex flex-col bg-surface-container-low rounded-[18px] border border-surface-variant/35 overflow-hidden card-shadow hover:border-primary-container/40 transition-all duration-200">
+<div class="relative w-full aspect-[4/3] overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Tender sautéed jumbo shrimp bathed in a glossy white wine garlic butter sauce twirled elegantly over fine angel hair pasta. Garnished with freshly chopped Italian parsley and chili flakes in a sleek black ceramic plate, set in a cozy dark upscale test kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlGgPIBDZt0LCHqmvkyjes1AmYanm2SR0f_dxxWnr-zCWCc-vvaihWWc_dcYtKJOFsG3xC61yMS-fDDcvvrNrki08bXStEexwlRnuccCcihGJmaSdB4e4SECxbYqLZ14AzVefuhWScmt0JgRSUvWe9M9M_H0YRC9aTXiNyLSwUobJbpLGODuMqrhjSBfJMoUjd_NRc_wzA2-FNzsHjZQ4se2NioE-KCScO8c56-9menG7ZjDSL-Gpg0lWvLOGBfeICk58Edu9rbYE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-low via-transparent to-black/40"></div>
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm border border-surface-variant/40 text-secondary text-[10px] font-label-sm tracking-wide">
+              Comfort Food
+            </span>
+<button aria-label="Remove Garlic Butter Shrimp Pasta from saved" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-primary-container text-white flex items-center justify-center flame-glow active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[15px]" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+</button>
+</div>
+<div class="p-3 flex flex-col justify-between flex-1">
+<div>
+<div class="flex items-center justify-between gap-1 mb-1">
+<span class="inline-flex items-center gap-1 text-[11px] text-secondary font-semibold">
+<span class="material-symbols-outlined text-[13px] text-secondary" data-icon="star" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.8 <span class="text-on-surface-variant/60 font-normal">(1.1k)</span>
+</span>
+<span class="text-[10px] text-on-surface-variant/80 font-medium">510 kcal</span>
+</div>
+<h2 class="font-headline-sm text-[14px] leading-tight font-bold text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">
+                Garlic Butter Shrimp Pasta
+              </h2>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-surface-variant/20 mt-auto">
+<span class="inline-flex items-center gap-1 text-on-surface-variant text-[11px] font-label-md">
+<span class="material-symbols-outlined text-[14px] text-primary-container" data-icon="schedule">schedule</span>
+                22m prep
+              </span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant/70 group-hover:bg-primary-container group-hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[12px]" data-icon="arrow_forward">arrow_forward</span>
+</span>
+</div>
+</div>
+</article>
+</div>
+<!-- Smart Pantry Helper Banner -->
+<section class="mt-5 relative overflow-hidden rounded-2xl bg-surface-container-high/90 border border-primary-container/30 p-3.5 card-shadow">
+<!-- Glow highlight behind banner -->
+<div class="absolute -right-8 -bottom-8 w-32 h-32 bg-primary-container/20 rounded-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10 flex items-start gap-3">
+<div class="w-9 h-9 rounded-xl bg-primary-container/15 border border-primary-container/30 flex items-center justify-center text-primary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between gap-1 mb-0.5">
+<h3 class="font-headline-sm text-[13px] text-on-surface font-bold">Ready to Cook?</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary-container/20 text-primary-container text-[10px] font-bold tracking-tight border border-primary-container/30">
+                4 Ready to cook
+              </span>
+</div>
+<p class="text-on-surface-variant text-[12px] leading-snug mb-2 font-body-sm">
+              Have ingredients at home? Tap to find which saved recipes you can make right now.
+            </p>
+<button class="inline-flex items-center gap-1 text-primary text-[12px] font-label-md font-semibold hover:text-white transition-colors">
+<span>Match with My Pantry</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Persistent Shared Component) -->
+<!-- Destination count: 4, Active destination: Saved -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center h-16 px-space-md max-w-lg mx-auto pb-safe bg-surface-container-lowest/85 backdrop-blur-lg shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+<!-- Tab 1: Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-on-surface active:scale-95 transition-transform duration-150 group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary-container transition-colors" data-icon="cottage">cottage</span>
+<span class="font-label-sm text-label-sm mt-0.5">Home</span>
+</a>
+<!-- Tab 2: Ingredients (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-on-surface active:scale-95 transition-transform duration-150 group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary-container transition-colors" data-icon="kitchen">kitchen</span>
+<span class="font-label-sm text-label-sm mt-0.5">Ingredients</span>
+</a>
+<!-- Tab 3: Recipe (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-on-surface active:scale-95 transition-transform duration-150 group" href="#">
+<span class="material-symbols-outlined text-[22px] group-hover:text-primary-container transition-colors" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="font-label-sm text-label-sm mt-0.5">Recipe</span>
+</a>
+<!-- Tab 4: Saved (ACTIVE: style_active_navigation) -->
+<a class="flex flex-col items-center justify-center text-primary-container font-bold relative after:content-[''] after:w-1 after:h-1 after:bg-primary-container after:rounded-full after:mt-1 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined text-[22px] text-primary-container" data-icon="bookmark" data-weight="fill" style="font-variation-settings: 'FILL' 1;">bookmark</span>
+<span class="font-label-sm text-label-sm text-primary-container mt-0.5">Saved</span>
+</a>
+</nav>
+</div>
+<!-- Interactive Filter & Bookmark Micro-interactions -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Toggle saved bookmark state micro-interaction
+      const bookmarkButtons = document.querySelectorAll('article button[aria-label^="Remove"]');
+      bookmarkButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const icon = btn.querySelector('.material-symbols-outlined');
+          const isFilled = icon.style.fontVariationSettings?.includes("'FILL' 1");
+          
+          if (isFilled) {
+            icon.style.fontVariationSettings = "'FILL' 0";
+            btn.classList.remove('bg-primary-container', 'text-white', 'flame-glow');
+            btn.classList.add('bg-black/60', 'text-on-surface-variant');
+          } else {
+            icon.style.fontVariationSettings = "'FILL' 1";
+            btn.classList.add('bg-primary-container', 'text-white', 'flame-glow');
+            btn.classList.remove('bg-black/60', 'text-on-surface-variant');
+          }
+        });
+      });
+    });
+  </script>
+</body></html>

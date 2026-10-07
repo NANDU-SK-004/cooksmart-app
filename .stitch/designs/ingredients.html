@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CookSmart - Pantry Chef</title>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Epilogue & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with custom theme config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "secondary": "#ffb867",
+            "primary-fixed-dim": "#ffb59d",
+            "surface": "#111317",
+            "on-secondary-fixed-variant": "#673d00",
+            "on-tertiary": "#003543",
+            "surface-container-high": "#282a2e",
+            "on-primary-container": "#5f1900",
+            "surface-container-highest": "#333539",
+            "outline-variant": "#594139",
+            "on-primary": "#5d1900",
+            "secondary-container": "#d48300",
+            "on-error-container": "#ffdad6",
+            "on-background": "#e2e2e8",
+            "on-secondary-fixed": "#2b1700",
+            "on-secondary": "#482900",
+            "surface-variant": "#333539",
+            "primary": "#ffb59d",
+            "secondary-fixed-dim": "#ffb867",
+            "tertiary": "#59d5fb",
+            "on-tertiary-container": "#003744",
+            "surface-container-lowest": "#0c0e12",
+            "inverse-primary": "#ab3500",
+            "error-container": "#93000a",
+            "secondary-fixed": "#ffddbb",
+            "outline": "#a98a80",
+            "surface-dim": "#111317",
+            "surface-bright": "#37393e",
+            "on-primary-fixed": "#390c00",
+            "on-surface-variant": "#e1bfb5",
+            "surface-container": "#1e2024",
+            "primary-container": "#ff6b35",
+            "on-error": "#690005",
+            "primary-fixed": "#ffdbd0",
+            "background": "#111317",
+            "inverse-surface": "#e2e2e8",
+            "on-surface": "#e2e2e8",
+            "on-primary-fixed-variant": "#832600",
+            "tertiary-fixed": "#b5ebff",
+            "surface-tint": "#ffb59d",
+            "on-tertiary-fixed": "#001f28",
+            "tertiary-container": "#00a7cb",
+            "inverse-on-surface": "#2f3035",
+            "on-tertiary-fixed-variant": "#004e60",
+            "error": "#ffb4ab",
+            "surface-container-low": "#1a1c20",
+            "on-secondary-container": "#452800",
+            "tertiary-fixed-dim": "#59d5fb"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "gutter-desktop": "1.5rem",
+            "space-md": "1rem",
+            "margin-desktop": "2.5rem",
+            "gutter": "1rem",
+            "margin-tablet": "1.5rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "margin": "1rem",
+            "space-xl": "2rem",
+            "space-sm": "0.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-sm": ["Epilogue"],
+            "display": ["Epilogue"],
+            "headline-lg": ["Epilogue"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "display-mobile": ["Epilogue"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "label-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Epilogue"]
+          },
+          "fontSize": {
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "700" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+            "display": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "headline-lg": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "body-lg": ["17px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "display-mobile": ["32px", { "lineHeight": "38px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+            "body-md": ["15px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "label-lg": ["15px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "headline-md": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.005em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    /* Smooth custom scrollbars */
+    ::-webkit-scrollbar {
+      display: none;
+    }
+    * {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex justify-center selection:bg-primary-container selection:text-white">
+<!-- Mobile Container Envelope (390px default viewport simulation, max-w-lg) -->
+<div class="w-full max-w-lg bg-surface-container-lowest min-h-screen flex flex-col relative pb-36 shadow-2xl overflow-x-hidden">
+<!-- Top App Header -->
+<header class="sticky top-0 left-0 right-0 z-40 bg-surface/90 backdrop-blur-md px-margin h-16 flex items-center justify-between transition-all">
+<div class="flex items-center gap-2">
+<button aria-label="Go back" class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-low text-on-surface hover:text-primary active:scale-95 transition-transform duration-150" type="button">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<div>
+<div class="flex items-center gap-1.5">
+<h1 class="text-headline-sm font-headline-sm text-on-surface tracking-tight font-bold">Pantry Chef</h1>
+<span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-label-sm font-bold bg-primary-container/20 text-primary-container border border-primary-container/30">
+              AI PRO
+            </span>
+</div>
+<p class="text-label-sm font-label-sm text-on-surface-variant/70">Smart Recipe Generator</p>
+</div>
+</div>
+<button class="text-label-md font-label-md text-on-surface-variant hover:text-primary active:scale-95 transition-all duration-150 px-2 py-1 rounded-lg" type="button">
+        Clear All
+      </button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin pt-space-sm space-y-space-lg">
+<!-- Ambient Glow Behind Search & Input Section -->
+<div class="relative">
+<div class="absolute -top-6 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-primary-container/10 blur-2xl pointer-events-none rounded-full"></div>
+<!-- Search & Add Input Box -->
+<div class="relative z-10 bg-surface-container-low border border-surface-container-highest rounded-2xl p-2 shadow-lg transition-all focus-within:border-primary-container/60 focus-within:ring-2 focus-within:ring-primary-container/20">
+<div class="flex items-center gap-2">
+<div class="pl-2.5 text-on-surface-variant/60 flex items-center">
+<span class="material-symbols-outlined text-[22px]" data-icon="kitchen">kitchen</span>
+</div>
+<input class="w-full bg-transparent border-0 text-on-surface placeholder:text-on-surface-variant/50 text-body-md font-body-md focus:ring-0 focus:outline-none py-2" placeholder="Type an ingredient (e.g. Chicken, Basil)..." type="text"/>
+<!-- Barcode Scan Action -->
+<button aria-label="Scan barcode or camera" class="p-2 text-on-surface-variant/80 hover:text-secondary active:scale-95 transition-all rounded-xl" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="barcode_scanner">barcode_scanner</span>
+</button>
+<!-- Quick Add Flame Button -->
+<button aria-label="Add ingredient" class="h-10 px-3.5 bg-primary-container hover:bg-primary-container/90 text-white rounded-xl flex items-center gap-1 font-label-md text-label-md shadow-[0_4px_16px_rgba(255,107,53,0.35)] active:scale-95 transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span>Add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Selected Ingredients Section -->
+<section class="space-y-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Selected Ingredients</h2>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-primary-container/15 text-primary-container border border-primary-container/30">
+              5 added
+            </span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+            Ready to cook
+          </span>
+</div>
+<!-- Selected Tags Cloud -->
+<div class="flex flex-wrap gap-2 pt-1">
+<!-- Chip 1: Chicken Breast -->
+<div class="inline-flex items-center gap-1.5 pl-3 pr-2 py-2 rounded-full bg-surface-container border border-primary-container/40 text-on-surface shadow-sm hover:border-primary-container transition-colors group">
+<span class="text-base select-none">🍗</span>
+<span class="text-body-sm font-label-md font-medium text-on-surface">Chicken Breast</span>
+<button aria-label="Remove Chicken Breast" class="w-5 h-5 ml-0.5 rounded-full flex items-center justify-center text-on-surface-variant/70 group-hover:text-primary-container hover:bg-primary-container/20 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 2: Garlic Cloves -->
+<div class="inline-flex items-center gap-1.5 pl-3 pr-2 py-2 rounded-full bg-surface-container border border-primary-container/40 text-on-surface shadow-sm hover:border-primary-container transition-colors group">
+<span class="text-base select-none">🧄</span>
+<span class="text-body-sm font-label-md font-medium text-on-surface">Garlic Cloves</span>
+<button aria-label="Remove Garlic Cloves" class="w-5 h-5 ml-0.5 rounded-full flex items-center justify-center text-on-surface-variant/70 group-hover:text-primary-container hover:bg-primary-container/20 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 3: Baby Spinach -->
+<div class="inline-flex items-center gap-1.5 pl-3 pr-2 py-2 rounded-full bg-surface-container border border-primary-container/40 text-on-surface shadow-sm hover:border-primary-container transition-colors group">
+<span class="text-base select-none">🥬</span>
+<span class="text-body-sm font-label-md font-medium text-on-surface">Baby Spinach</span>
+<button aria-label="Remove Baby Spinach" class="w-5 h-5 ml-0.5 rounded-full flex items-center justify-center text-on-surface-variant/70 group-hover:text-primary-container hover:bg-primary-container/20 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 4: Heavy Cream -->
+<div class="inline-flex items-center gap-1.5 pl-3 pr-2 py-2 rounded-full bg-surface-container border border-primary-container/40 text-on-surface shadow-sm hover:border-primary-container transition-colors group">
+<span class="text-base select-none">🥛</span>
+<span class="text-body-sm font-label-md font-medium text-on-surface">Heavy Cream</span>
+<button aria-label="Remove Heavy Cream" class="w-5 h-5 ml-0.5 rounded-full flex items-center justify-center text-on-surface-variant/70 group-hover:text-primary-container hover:bg-primary-container/20 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Chip 5: Sun-Dried Tomatoes -->
+<div class="inline-flex items-center gap-1.5 pl-3 pr-2 py-2 rounded-full bg-surface-container border border-primary-container/40 text-on-surface shadow-sm hover:border-primary-container transition-colors group">
+<span class="text-base select-none">🍅</span>
+<span class="text-body-sm font-label-md font-medium text-on-surface">Sun-Dried Tomatoes</span>
+<button aria-label="Remove Sun-Dried Tomatoes" class="w-5 h-5 ml-0.5 rounded-full flex items-center justify-center text-on-surface-variant/70 group-hover:text-primary-container hover:bg-primary-container/20 transition-all" type="button">
+<span class="material-symbols-outlined text-[14px]" data-icon="close">close</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Quick Add Suggestions (Pantry Essentials) -->
+<section class="space-y-space-md pt-2">
+<div class="flex items-baseline justify-between">
+<div>
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Quick Add Essentials</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70">Tap to add from common kitchen staples</p>
+</div>
+<span class="text-label-sm font-label-sm text-secondary cursor-pointer hover:underline">See all</span>
+</div>
+<!-- Bento Group: Group 1 Produce -->
+<div class="bg-surface-container-low border border-surface-container-highest/60 rounded-2xl p-space-md space-y-2.5">
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-secondary tracking-wider uppercase">
+<span class="material-symbols-outlined text-[15px]" data-icon="eco">eco</span>
+<span>Fresh Produce</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Onions</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Tomatoes</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Mushrooms</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Lemon</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Bell Pepper</span>
+</button>
+</div>
+</div>
+<!-- Bento Group: Group 2 Dairy & Eggs -->
+<div class="bg-surface-container-low border border-surface-container-highest/60 rounded-2xl p-space-md space-y-2.5">
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-secondary tracking-wider uppercase">
+<span class="material-symbols-outlined text-[15px]" data-icon="egg">egg</span>
+<span>Dairy &amp; Eggs</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Parmesan</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Butter</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Eggs</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Greek Yogurt</span>
+</button>
+</div>
+</div>
+<!-- Bento Group: Group 3 Pantry & Grains -->
+<div class="bg-surface-container-low border border-surface-container-highest/60 rounded-2xl p-space-md space-y-2.5">
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-secondary tracking-wider uppercase">
+<span class="material-symbols-outlined text-[15px]" data-icon="grain">grain</span>
+<span>Pantry Staples &amp; Grains</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Pasta</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Olive Oil</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Rice</span>
+</button>
+<button class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant hover:text-on-surface hover:border-primary-container/50 active:scale-95 transition-all text-body-sm font-body-sm" type="button">
+<span class="material-symbols-outlined text-[15px] text-primary" data-icon="add">add</span>
+<span>Soy Sauce</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Meal Preferences & Constraints -->
+<section class="space-y-space-sm pt-2">
+<div class="flex items-center justify-between">
+<h2 class="text-headline-sm font-headline-sm text-on-surface">Preferences &amp; Filters</h2>
+<span class="text-label-sm font-label-sm text-on-surface-variant/60">(Optional)</span>
+</div>
+<div class="flex flex-wrap gap-2">
+<!-- Active Filter 1 -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-primary-container/20 border border-primary-container text-primary-fixed font-label-md text-body-sm shadow-[0_2px_12px_rgba(255,107,53,0.18)] active:scale-95 transition-transform" type="button">
+<span>⚡</span>
+<span>Under 30 mins</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="done">done</span>
+</button>
+<!-- Active Filter 2 -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-primary-container/20 border border-primary-container text-primary-fixed font-label-md text-body-sm shadow-[0_2px_12px_rgba(255,107,53,0.18)] active:scale-95 transition-transform" type="button">
+<span>💪</span>
+<span>High Protein</span>
+<span class="material-symbols-outlined text-[14px]" data-icon="done">done</span>
+</button>
+<!-- Inactive Filter 3 -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant/80 hover:text-on-surface active:scale-95 transition-all text-body-sm font-label-md" type="button">
+<span>🌾</span>
+<span>Gluten Free</span>
+</button>
+<!-- Inactive Filter 4 -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant/80 hover:text-on-surface active:scale-95 transition-all text-body-sm font-label-md" type="button">
+<span>🍲</span>
+<span>Comfort Food</span>
+</button>
+<!-- Inactive Filter 5 -->
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full bg-surface-container border border-surface-container-highest text-on-surface-variant/80 hover:text-on-surface active:scale-95 transition-all text-body-sm font-label-md" type="button">
+<span>🥗</span>
+<span>Low Carb</span>
+</button>
+</div>
+</section>
+<!-- Culinary Inspiration Teaser Glass Card -->
+<div class="relative overflow-hidden rounded-2xl border border-surface-container-highest/50 bg-gradient-to-br from-surface-container-low via-surface-container to-surface-container-lowest p-space-md mt-4">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-primary-container/15 flex items-center justify-center text-primary-container flex-shrink-0">
+<span class="material-symbols-outlined text-[28px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+<div>
+<h3 class="text-label-lg font-label-lg text-on-surface">Tuscan Creamy Chicken</h3>
+<p class="text-body-sm font-body-sm text-on-surface-variant/70">Potential 98% match detected from your selected ingredients!</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Sticky Bottom Action CTA Box -->
+<div class="fixed bottom-16 left-0 right-0 z-40 max-w-lg mx-auto px-margin pb-3 pt-3 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/90 to-transparent pointer-events-none">
+<div class="pointer-events-auto flex flex-col items-center">
+<button class="w-full h-[52px] bg-primary-container hover:bg-primary-container/95 text-white font-label-lg text-label-lg rounded-full flex items-center justify-center gap-2 shadow-[0_8px_24px_-4px_rgba(255,107,53,0.45)] active:scale-[0.98] transition-all" type="button">
+<span>✨</span>
+<span class="font-bold tracking-wide">Generate Recipe (5 ingredients)</span>
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+<span class="mt-1.5 text-[11px] font-label-sm text-on-surface-variant/70 tracking-wide text-center">
+          AI matches recipes based on your exact pantry ingredients
+        </span>
+</div>
+</div>
+<!-- BottomNavBar (CookSmart Shared Component with Ingredients as Active Tab) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 flex justify-around items-center h-16 px-space-md max-w-lg mx-auto pb-safe bg-surface-container-lowest/85 dark:bg-surface-container-lowest/85 backdrop-blur-lg shadow-[0_-4px_24px_rgba(0,0,0,0.6)]">
+<!-- Tab 1: Home (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-on-surface hover:text-primary-container transition-colors duration-200 active:scale-95 transition-transform" href="#home">
+<span class="material-symbols-outlined text-[22px]" data-icon="cottage">cottage</span>
+<span class="text-label-sm font-label-sm">Home</span>
+</a>
+<!-- Tab 2: Ingredients (ACTIVE TAB: Exact Match from JSON spec) -->
+<a class="flex flex-col items-center justify-center text-primary-container dark:text-primary-container font-bold relative after:content-[''] after:w-1 after:h-1 after:bg-primary-container after:rounded-full after:mt-1 active:scale-95 transition-transform duration-150" href="#ingredients">
+<span class="material-symbols-outlined text-[22px]" data-icon="kitchen" data-weight="fill" style="font-variation-settings: 'FILL' 1;">kitchen</span>
+<span class="text-label-sm font-label-sm">Ingredients</span>
+</a>
+<!-- Tab 3: Recipe (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-on-surface hover:text-primary-container transition-colors duration-200 active:scale-95 transition-transform" href="#recipe">
+<span class="material-symbols-outlined text-[22px]" data-icon="restaurant_menu">restaurant_menu</span>
+<span class="text-label-sm font-label-sm">Recipe</span>
+</a>
+<!-- Tab 4: Saved (Inactive) -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant/70 dark:text-on-surface-variant/70 hover:text-on-surface hover:text-primary-container transition-colors duration-200 active:scale-95 transition-transform" href="#saved">
+<span class="material-symbols-outlined text-[22px]" data-icon="bookmark">bookmark</span>
+<span class="text-label-sm font-label-sm">Saved</span>
+</a>
+</nav>
+</div>
+</body></html>

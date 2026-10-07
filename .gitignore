@@ -1,0 +1,21 @@
+# Flutter & Dart artifacts
+**/build/
+**/.dart_tool/
+**/.pub-cache/
+**/.pub/
+cooksmart_app/build/
+cooksmart_app/.dart_tool/
+cooksmart_app/.flutter-plugins-dependencies
+
+# Secrets and API credentials
+**/api_config.dart
+!**/api_config.example.dart
+*.env
+*.env.*
+cooksmart_app/lib/config/api_config.dart
+
+# System and logs
+*.log
+*.apk
+.DS_Store
+Thumbs.db
